@@ -1,10 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-const os = require('os');
 const fs = require('fs');
 
-const CONF_PATH = path.join(app.getPath('appData'), 'config.json');
+const CONF_PATH = path.join(app.getPath('userData'), 'scroll-rack-config.json');
 
 function createWindow () {
   // Create the browser window.
@@ -59,7 +58,7 @@ ipcMain.handle('read-config', (event, ...args) => {
 ipcMain.handle('export-config', (event, ...args) => {
   const selectedPath = dialog.showSaveDialogSync({
     title: 'Save config file',
-    defaultPath: path.join(os.homedir(), 'scroll-rack-config.json')
+    defaultPath: path.join(app.getPath('home'), 'scroll-rack-config.json')
   });
   if (!selectedPath) {
     return;
@@ -71,7 +70,7 @@ ipcMain.handle('export-config', (event, ...args) => {
 ipcMain.handle('load-config', (event, ...args) => {
   const selectedPaths = dialog.showOpenDialogSync({
     title: 'Select config file',
-    defaultPath: path.join(os.homedir()),
+    defaultPath: path.join(app.getPath('home')),
     filters: [{ name: 'JSON', extensions: ['json'] }],
   });
   if (!selectedPaths) {

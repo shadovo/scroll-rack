@@ -1,6 +1,7 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
-const { clipboard, ipcRenderer } = require('electron');
+const { app, clipboard, ipcRenderer } = require('electron');
+const path = require('path');
 
 // HANDLE DATA
 function readConf() {
@@ -26,7 +27,7 @@ function createAddConfigBox() {
         &nbsp;&nbsp;"scripts":&nbsp;[{<br>
         &nbsp;&nbsp;&nbsp;&nbsp;"title": "script title",<br>
         &nbsp;&nbsp;&nbsp;&nbsp;"description": "my \`description\`",<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;"script": nvm use && \\\n npm start<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"script": nvm use && \\\\\\n npm start<br>
         &nbsp;&nbsp;},<br>
         &nbsp;&nbsp;{...}]<br>
       }, {...}]<br>

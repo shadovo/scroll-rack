@@ -1,0 +1,25 @@
+[{
+    "groupTitle": "scroll-rack",
+    "scripts": [
+        {
+            "title": "Run locally",
+            "description": "Start the project locally for development purposes",
+            "script": "nvm use && npm start"
+        },
+        {
+            "title": "Build for linux",
+            "description": "Create a .deb package for linux",
+            "script": "nvm use && npm run package:linux"
+        },
+        {
+            "title": "Build for mac",
+            "description": "Create a .app package for mac",
+            "script": "nvm use && npm run package:mac"
+        },
+        {
+            "title": "Build for windows",
+            "description": "Create a .exe package for windows",
+            "script": "nvm use && npm run package:win"
+        }
+    ]
+}]
