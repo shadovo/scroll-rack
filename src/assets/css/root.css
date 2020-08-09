@@ -4,20 +4,23 @@
     --main-font: 'Source Sans Pro', Arial, Helvetica, sans-serif;
     --code-font: 'Courier New', Courier;
 
-    --title-text-size: 32px;
-    --group-title-text-size: 20px;
-    --script-title-text-size: 18px;
-    --main-text-size: 16px;
+    --text-size-title-main: 32px;
+    --text-size-title-group: 20px;
+    --text-size-title-script: 18px;
+    --text-size-default: 16px;
 
-    --main-bg-color: #282a36;
-    --main-text-color: #f8f8f2;
-    --title-bg-color: #383a59;
-    --title-text-color: #bd93f9;
-    --code-bg-color: #383a59;
-    --code-text-color: #ffb86c;
-    --group-title-text-color: #8be9fd;
-    --hamburger-icon-color: #6272a4;
-    --border-color: #4c5067;
-    --hover-color:  #4c5067;
-    --button-color: #50fa7b;
+    --color-bg-default: #282a36;
+    --color-bg-header: #383a59;
+    --color-bg-code: #383a59;
+    --color-bg-hover:  #4c5067;
+    --color-bg-button: #50fa7b;
+
+    --color-text-default: #f8f8f2;
+    --color-text-header: #bd93f9;
+    --color-text-header-group: #8be9fd;
+    --color-text-code: #ffb86c;
+    --color-text-button: #000000;
+
+    --color-icon: #6272a4;
+    --color-border: #4c5067;
 }

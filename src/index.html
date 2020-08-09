@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-    <h1>Scroll rack <span class="settings-icon right"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 -256 1792 1792"><path d="M1145 645q0-106-75-181t-181-75q-106 0-181 75t-75 181q0 106 75 181t181 75q106 0 181-75t75-181zm512-109v222q0 12-8 23t-20 13l-185 28q-19 54-39 91 35 50 107 138 10 12 10 25t-9 23q-27 37-99 108t-94 71q-12 0-26-9l-138-108q-44 23-91 38-16 136-29 186-7 28-36 28H778q-14 0-24-8-11-9-12-22l-28-184q-49-16-90-37l-141 107q-10 9-25 9-14 0-25-11-126-114-165-168-7-10-7-23 0-12 8-23l51-66 54-71q-27-50-41-99l-183-27q-13-2-21-12-8-11-8-24V532q0-12 8-23t19-13l186-28q14-46 39-92-40-57-107-138-10-12-10-24 0-10 9-23 26-36 99-107 72-72 94-72 13 0 26 10l138 107q44-23 91-38 16-136 29-186 7-28 36-28h222q14 0 25 9 10 8 11 21l28 184q49 16 90 37l142-107q9-9 24-9 13 0 25 10 129 119 165 170 7 8 7 22 0 12-8 23l-51 67q-36 45-54 70 26 50 41 98l183 28q13 2 21 13 8 10 8 23z"/></svg></span></h1>
+    <h1>Scroll rack <span class="icon--settings right"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 -256 1792 1792"><path d="M1145 645q0-106-75-181t-181-75q-106 0-181 75t-75 181q0 106 75 181t181 75q106 0 181-75t75-181zm512-109v222q0 12-8 23t-20 13l-185 28q-19 54-39 91 35 50 107 138 10 12 10 25t-9 23q-27 37-99 108t-94 71q-12 0-26-9l-138-108q-44 23-91 38-16 136-29 186-7 28-36 28H778q-14 0-24-8-11-9-12-22l-28-184q-49-16-90-37l-141 107q-10 9-25 9-14 0-25-11-126-114-165-168-7-10-7-23 0-12 8-23l51-66 54-71q-27-50-41-99l-183-27q-13-2-21-12-8-11-8-24V532q0-12 8-23t19-13l186-28q14-46 39-92-40-57-107-138-10-12-10-24 0-10 9-23 26-36 99-107 72-72 94-72 13 0 26 10l138 107q44-23 91-38 16-136 29-186 7-28 36-28h222q14 0 25 9 10 8 11 21l28 184q49 16 90 37l142-107q9-9 24-9 13 0 25 10 129 119 165 170 7 8 7 22 0 12-8 23l-51 67q-36 45-54 70 26 50 41 98l183 28q13 2 21 13 8 10 8 23z"/></svg></span></h1>
     <div id="content"></div>
-    <div class="settings-container settings-container--closed">
+    <div class="settings__container settings__container--closed">
       <div class="settings">
-        <h1>Settings <span class="settings-close-icon right"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 96 96"><path d="M96 14L82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z"/></svg></span></h1>
-        <div class="settings-block">
+        <h1>Settings <span class="icon--settings-close right"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 96 96"><path d="M96 14L82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z"/></svg></span></h1>
+        <div class="settings__block">
           <h2>Load config file</h2>
           <p>You can load a json fils in the following format with the conf</p>
           <p class="code">
@@ -29,12 +29,12 @@
               &nbsp;&nbsp;{...}]<br>
             }, {...}]<br>
           </p>
-          <span id="button-load-config" class="settings-button">Load config</span>
+          <span id="button-load-config" class="button">Load config</span>
         </div>
-        <div class="settings-block">
+        <div class="settings__block">
           <h2>Export config file</h2>
           <p>Export your current config as json to send to someone else or modify and the load again.</p>
-          <span id="button-export-config" class="settings-button">Export config</span>
+          <span id="button-export-config" class="button">Export config</span>
         </div>
       </div>
     </div>

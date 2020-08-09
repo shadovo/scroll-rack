@@ -6,12 +6,3 @@
 // process.
 
 // const electron = require('electron');
-
-
-// window.addEventListener('DOMContentLoaded', () => {
-//     [...document.querySelectorAll('.script')].forEach(function (ele) {
-//         ele.addEventListener('click', function () {
-//             copyToClipboard(this.dataset.script);
-//         }, false)
-//     });
-// });

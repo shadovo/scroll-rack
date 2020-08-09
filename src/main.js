@@ -61,7 +61,6 @@ ipcMain.handle('export-config', (event, ...args) => {
     title: 'Save config file',
     defaultPath: path.join(os.homedir(), 'scroll-rack-config.json')
   });
-  console.log('from: ', CONF_PATH, 'to: ', selectedPath);
   if (!selectedPath) {
     return;
   }

@@ -2,55 +2,21 @@
 // It has the same sandbox as a Chrome extension.
 const { clipboard, ipcRenderer } = require('electron');
 
-function hamburgerIcon() {
-  return `
-    <svg viewBox="0 0 100 80" width="25" height="25">
-      <rect width="100" height="15"></rect>
-      <rect y="30" width="100" height="15"></rect>
-      <rect y="60" width="100" height="15"></rect>
-    </svg>`;
-}
-
-function createScript(scriptConf) {
-  return `<div class="script-container" data-script="${scriptConf.script}" title="Copy script to clipboard">
-    <h3>${scriptConf.title}</h3>
-    <p class="description">${scriptConf.description.replace(/`(.*)`/g, '<span class="code">$1</span>')}</p>
-    <p class="script"><span class="code">${scriptConf.script.replace(/ \\/g, ' \\<br>&nbsp;&nbsp;')}</span></p>
-  </div>`;
-}
-
-function createGroup(groupConf) {
-  return `
-    <div class="group">
-      <h2 class="group-title group--closed" title="Click to reveal scripts">${groupConf.groupTitle} <span class="right">${hamburgerIcon()}</span></h2>
-      <div class="group-scripts">
-        ${groupConf.scripts.map(createScript).join('')}
-      </div>
-    </div>
-  `;
-}
-
-function copyToClipboard(script) {
-  clipboard.writeText(script);
-  console.log('ADDED TO CLIPBOARD: ', script);
-}
-
-function renderConfig(config) {
-  document.getElementById('content').innerHTML = config.map(createGroup).join('');
-  [...document.querySelectorAll('.script-container')].forEach(function (ele) {
-    ele.addEventListener('click', function () {
-        copyToClipboard(this.dataset.script);
-    }, false)
-  });
-  [...document.querySelectorAll('.group-title')].forEach(function (ele) {
-    ele.addEventListener('click', function () {
-        this.classList.toggle('group--closed');
-    }, false)
+// HANDLE DATA
+function readConf() {
+  ipcRenderer.invoke('read-config').then(config => {
+    if (config) {
+      renderConfig(config);
+    } else {
+      renderAddConfig()
+    }
   });
 }
 
-function renderAddConfig() {
-  document.getElementById('content').innerHTML = `
+// HTML TEMPLATES
+
+function createAddConfigBox() {
+   return `
     <div class="no-config-found">
       <h3>No config found</h3>
       <p>You can load a json fils in the following format with the conf</p>
@@ -65,50 +31,98 @@ function renderAddConfig() {
         &nbsp;&nbsp;{...}]<br>
       }, {...}]<br>
     </p>
-    <span id="button-load-missing-config" class="settings-button">Load config</span>
+    <span id="button-load-missing-config" class="button">Load config</span>
+    </div>`;
+}
+
+function createHamburgerIcon() {
+  return `
+    <svg viewBox="0 0 100 80" width="25" height="25">
+      <rect width="100" height="15"></rect>
+      <rect y="30" width="100" height="15"></rect>
+      <rect y="60" width="100" height="15"></rect>
+    </svg>`;
+}
+
+function createScript(scriptConf) {
+  return `<div class="script__container" data-script="${scriptConf.script}" title="Copy script to clipboard">
+    <h3>${scriptConf.title}</h3>
+    <p class="script__description">${scriptConf.description.replace(/`(.*)`/g, '<span class="code">$1</span>')}</p>
+    <p class="script"><span class="code">${scriptConf.script.replace(/ \\/g, ' \\<br>&nbsp;&nbsp;')}</span></p>
+  </div>`;
+}
+
+function createGroup(groupConf) {
+  return `
+    <div class="group">
+      <h2 class="group__title group--closed" title="Click to reveal scripts">${groupConf.groupTitle} <span class="right">${createHamburgerIcon()}</span></h2>
+      <div class="group__scripts">
+        ${groupConf.scripts.map(createScript).join('')}
+      </div>
     </div>
   `;
-  document.querySelector('#button-load-missing-config').addEventListener('click', async function () {
+}
+
+// RENDER HTML
+
+function renderConfig(config) {
+  document.getElementById('content').innerHTML = config.map(createGroup).join('');
+  [...document.querySelectorAll('.script__container')].forEach(ele => {
+    ele.addEventListener('click', () => {
+      clipboard.writeText(ele.dataset.script);
+    }, false)
+  });
+  [...document.querySelectorAll('.group__title')].forEach(ele => {
+    ele.addEventListener('click', () => {
+        ele.classList.toggle('group--closed');
+    }, false)
+  });
+}
+
+function renderAddConfig() {
+  document.getElementById('content').innerHTML = createAddConfigBox();
+  document.querySelector('#button-load-missing-config').addEventListener('click', () => {
     ipcRenderer.invoke('load-config').then(readConf);
   });
 }
 
-function readConf() {
-  ipcRenderer.invoke('read-config').then(config => {
-    if (config) {
-      renderConfig(config);
-    } else {
-      renderAddConfig()
-    }
-  });
+// UTILS
+function select(selector) {
+  return document.querySelector(selector);
+}
+
+function addClick(selector, callback) {
+  select(selector).addEventListener('click', callback);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   readConf();
 
-  document.querySelector('.settings-icon').addEventListener('click', function () {
-    document.querySelector('.settings-container').classList.remove('settings-container--closed');
+  // Add click handlers for buttons that are not dependant on conf.
+
+  addClick('.icon--settings', () => {
+    select('.settings__container').classList.remove('settings__container--closed');
   });
 
-  document.querySelector('.settings-container').addEventListener('click', function () {
-    document.querySelector('.settings-container').classList.add('settings-container--closed');
+  addClick('.settings__container', () => {
+    select('.settings__container').classList.add('settings__container--closed');
   });
 
-  document.querySelector('.settings-close-icon').addEventListener('click', function () {
-    document.querySelector('.settings-container').classList.add('settings-container--closed');
+  addClick('.icon--settings-close', () => {
+    select('.settings__container').classList.add('settings__container--closed');
   });
 
-  document.querySelector('.settings').addEventListener('click', function (e) {
+  addClick('.settings', (e) => {
     e.preventDefault();
     e.stopPropagation();
     return false;
   });
 
-  document.querySelector('#button-export-config').addEventListener('click', async function () {
+  addClick('#button-export-config', () => {
     ipcRenderer.invoke('export-config');
   });
 
-  document.querySelector('#button-load-config').addEventListener('click', async function () {
+  addClick('#button-load-config', () => {
     ipcRenderer.invoke('load-config').then(readConf);
   });
 });

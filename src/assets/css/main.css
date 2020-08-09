@@ -1,108 +1,140 @@
-
+/* DEFAULTS */
 html, body {
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
-    
-    background: var(--main-bg-color);
-    color: var(--main-text-color);
+    font-size: var(--text-size-default);
+    background: var(--color-bg-default);
+    color: var(--color-text-default);
 }
 
 h1, h2, h3, h4, h5 {
     margin: 0;
     padding: var(--gutter);
-    background: var(--title-bg-color);
-    color: var(--title-text-color);
+    background: var(--color-bg-header);
+    color: var(--color-text-header);
 }
 
 h1 {
-    font-size: var(--title-text-size);
+    font-size: var(--text-size-title-main);
 }
 
 h2 {
-    color: var(--group-title-text-color);
+    color: var(--color-text-header-group);
     padding: var(--gutter);
-    font-size: var(--group-title-text-size);
+    font-size: var(--text-size-title-group);
 }
 
 h3 {
-    color: var(--main-text-color);
+    color: var(--color-text-default);
     background: transparent;
     padding: 0;
     margin-bottom: var(--gutter);
-    font-size: var(--script-title-text-size);
+    font-size: var(--text-size-title-script);
 }
 
+svg {
+    fill: var(--color-icon);
+    stroke: var(--color-icon);
+}
+
+
+/* UTILS */
 .right {
     float: right;
 }
 
-.group {
-    margin: calc(2 * var(--gutter)) var(--gutter);
-    border: 1px solid var(--border-color);
+/* BUTTON */
+.button {
+    display: inline-block;
+    background: var(--color-bg-button);
+    border-radius: 4px;
+    text-align: center;
+    color: var(--color-text-button);
+    font-weight: 430;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
 }
 
-.group-scripts {
+.button:hover {
+    opacity: 0.8;
+}
+
+/* NO CONFIG */
+.no-config-found {
+    padding: var(--gutter);
+}
+
+/* CODE */
+.code {
+    color: var(--color-text-code);
+    font-family: var(--code-font);
+}
+
+.no-config-found .code,
+.settings .code {
+    background: var(--color-bg-code);
+    padding: 4px;
+}
+
+/* GROUP */
+.group {
+    margin: calc(2 * var(--gutter)) var(--gutter);
+    border: 1px solid var(--color-border);
+}
+
+.group__scripts {
     max-height: 2000px;
     transition: max-height 0.2s ease-in-out;
     overflow: hidden;
 }
 
-.group-title {
+.group__title {
     cursor: pointer;
 }
 
-.group-title svg {
-    fill: var(--hamburger-icon-color);
-}
-
-.group--closed ~ .group-scripts {
+.group--closed ~ .group__scripts {
     max-height: 0px;
 }
 
-.script-container p {
+/* SCRIPT */
+.script__container p {
     margin: calc(var(--gutter)/2) 0;
 }
 
-.script-container {
+.script__container {
     padding: var(--gutter);
-    border-bottom: 1px solid var(--border-color);;
+    border-bottom: 1px solid var(--color-border);;
     cursor: pointer;
 }
 
-.code {
-    color: var(--code-text-color);
-    font-family: var(--code-font);
+.script__container:hover,
+.script__container:hover .code {
+   background: var(--color-bg-hover);
 }
 
 .script .code {
     padding: 2px 4px;
     margin: -2px 0px;
-    background: var(--code-bg-color);
+    background: var(--color-bg-code);
 }
 
-.script-container:hover,
-.script-container:hover .code {
-   background: var(--hover-color);
-}
-
-.settings-icon {
+/* ICON */
+.icon--settings {
     margin-top: -2px;
     cursor: pointer;
 }
 
-.settings-close-icon {
+.icon--settings-close {
     margin-top: 4px;
     margin-right: 2px;
     cursor: pointer;
 }
 
-h1 svg {
-    fill: var(--hamburger-icon-color);
-    stroke: var(--hamburger-icon-color);
-}
-
-.settings-container {
+/* SETTINGS */
+.settings__container {
     position: fixed;
     top: 0;
     left: 0;
@@ -114,70 +146,43 @@ h1 svg {
     transition: background 0.2s ease-in-out;
 }
 
-.settings-container--closed {
+.settings__container--closed {
     background: rgba(0,0,0,0);
     pointer-events: none;
 }
 
-.no-config-found {
-    padding: var(--gutter);
-}
-
-.no-config-found .code,
-.settings .code {
-    background: var(--code-bg-color);
-    padding: 4px;
-}
-
 .settings {
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-    background: var(--title-bg-color);
+    background: var(--color-bg-header);
     box-shadow: 0px 0 16px 10px rgba(0,0,0,0.2);
     width: 430px;
     height: 100%;
     position: absolute;
     right: -430px;
     transform: translateX(-430px);
-    background: var(--main-bg-color);
+    background: var(--color-bg-default);
 }
 
 .settings h1 {
-    background: var(--main-bg-color);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--color-bg-default);
+    border-bottom: 1px solid var(--color-border);
     padding: var(--gutter) 0;
     margin: 0 var(--gutter);
 }
 
 .settings h2 {
     padding: 0;
-    background: var(--main-bg-color);
-    color: var(--main-text-color);
+    background: var(--color-bg-default);
+    color: var(--color-text-default);
 }
 
-.settings-block {
-    border-bottom: 1px solid var(--border-color);
+.settings__block {
+    border-bottom: 1px solid var(--color-border);
     padding: var(--gutter) 0;
     margin: 0 var(--gutter);
 }
 
-.settings-button {
-    display: inline-block;
-    background: var(--button-color);
-    border-radius: 4px;
-    text-align: center;
-    color: #000;
-    font-weight: 430;
-    padding: 8px 16px;
-    font-size: 16px;
-    border: 0;
-    cursor: pointer;
-}
-
-.settings-button:hover {
-    opacity: 0.8;
-}
-
-.settings-container--closed .settings {
+.settings__container--closed .settings {
     box-shadow: 0 0 0 0 rgba(0,0,0,0.2);
     transform: translateX(0px);
 }
