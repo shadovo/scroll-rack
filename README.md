@@ -1,5 +1,5 @@
 
-<img width="50" height="50" src="./docs/icon.png">
+<img width="80" height="80" style="float:left;" src="./docs/icon.png">
 
 # Scroll rack
 
@@ -74,3 +74,7 @@ To build the project for Linux run
 To build the project for Windows run (not yet tested)    
 `npm run package:win`   
     
+
+## Thanks to
+[Dracula theme](https://draculatheme.com/)    
+[Scroll icon](https://icon-icons.com/icon/tied-scroll/38786) which I modified to add the Dracula colors to.    
