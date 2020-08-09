@@ -1,0 +1,184 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+    
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: var(--gutter);
+    background: var(--title-bg-color);
+    color: var(--title-text-color);
+}
+
+h1 {
+    font-size: var(--title-text-size);
+}
+
+h2 {
+    color: var(--group-title-text-color);
+    padding: var(--gutter);
+    font-size: var(--group-title-text-size);
+}
+
+h3 {
+    color: var(--main-text-color);
+    background: transparent;
+    padding: 0;
+    margin-bottom: var(--gutter);
+    font-size: var(--script-title-text-size);
+}
+
+.right {
+    float: right;
+}
+
+.group {
+    margin: calc(2 * var(--gutter)) var(--gutter);
+    border: 1px solid var(--border-color);
+}
+
+.group-scripts {
+    max-height: 2000px;
+    transition: max-height 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+.group-title {
+    cursor: pointer;
+}
+
+.group-title svg {
+    fill: var(--hamburger-icon-color);
+}
+
+.group--closed ~ .group-scripts {
+    max-height: 0px;
+}
+
+.script-container p {
+    margin: calc(var(--gutter)/2) 0;
+}
+
+.script-container {
+    padding: var(--gutter);
+    border-bottom: 1px solid var(--border-color);;
+    cursor: pointer;
+}
+
+.code {
+    color: var(--code-text-color);
+    font-family: var(--code-font);
+}
+
+.script .code {
+    padding: 2px 4px;
+    margin: -2px 0px;
+    background: var(--code-bg-color);
+}
+
+.script-container:hover,
+.script-container:hover .code {
+   background: var(--hover-color);
+}
+
+.settings-icon {
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+.settings-close-icon {
+    margin-top: 4px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+h1 svg {
+    fill: var(--hamburger-icon-color);
+    stroke: var(--hamburger-icon-color);
+}
+
+.settings-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    transition: background 0.2s ease-in-out;
+}
+
+.settings-container--closed {
+    background: rgba(0,0,0,0);
+    pointer-events: none;
+}
+
+.no-config-found {
+    padding: var(--gutter);
+}
+
+.no-config-found .code,
+.settings .code {
+    background: var(--code-bg-color);
+    padding: 4px;
+}
+
+.settings {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    background: var(--title-bg-color);
+    box-shadow: 0px 0 16px 10px rgba(0,0,0,0.2);
+    width: 430px;
+    height: 100%;
+    position: absolute;
+    right: -430px;
+    transform: translateX(-430px);
+    background: var(--main-bg-color);
+}
+
+.settings h1 {
+    background: var(--main-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--gutter) 0;
+    margin: 0 var(--gutter);
+}
+
+.settings h2 {
+    padding: 0;
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+
+.settings-block {
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--gutter) 0;
+    margin: 0 var(--gutter);
+}
+
+.settings-button {
+    display: inline-block;
+    background: var(--button-color);
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    font-weight: 430;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
+}
+
+.settings-button:hover {
+    opacity: 0.8;
+}
+
+.settings-container--closed .settings {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0.2);
+    transform: translateX(0px);
+}
+

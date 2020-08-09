@@ -1,0 +1,23 @@
+:root {
+    --gutter: 16px;
+
+    --main-font: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    --code-font: 'Courier New', Courier;
+
+    --title-text-size: 32px;
+    --group-title-text-size: 20px;
+    --script-title-text-size: 18px;
+    --main-text-size: 16px;
+
+    --main-bg-color: #282a36;
+    --main-text-color: #f8f8f2;
+    --title-bg-color: #383a59;
+    --title-text-color: #bd93f9;
+    --code-bg-color: #383a59;
+    --code-text-color: #ffb86c;
+    --group-title-text-color: #8be9fd;
+    --hamburger-icon-color: #6272a4;
+    --border-color: #4c5067;
+    --hover-color:  #4c5067;
+    --button-color: #50fa7b;
+}
