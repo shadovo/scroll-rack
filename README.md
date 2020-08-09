@@ -8,7 +8,7 @@ Simply load a json config, as described further down, once loaded to the app cli
 
 There are two .zip archives with the Mac and Linux app respectivly available in the release on github. To build the apps yourself follow the instructions [here](#Run-locally-as-a-developer).
 
-<img width="200" src="./docs/scroll-rack-example.png">
+<img width="400" src="./docs/scroll-rack-example.png">
 
 ---
 
@@ -19,7 +19,7 @@ So here is the explanation of how to use this app.
 ### Load a config
 The first time you open the app it will not contain any scripts but instead some instructions on how to load your first config.   
     
-<img width="200" src="./docs/scroll-rack-empty.png">
+<img width="400" src="./docs/scroll-rack-empty.png">
 
 Create a .json file in the following format with the scripts you want or use [the scroll rack example](./docs/scroll-rack-config.json) as a base.
 
