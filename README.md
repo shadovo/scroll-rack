@@ -1,5 +1,5 @@
 
-<img width="80" height="80" style="float:left;" src="./docs/icon.png">
+<img width="80" height="80" src="./docs/icon.png">
 
 # Scroll rack
 
@@ -59,6 +59,8 @@ The config you load to Scroll rack will be stored according to the `userData` pa
 ---
 
 ## Run locally as a developer
+Currently built in node 14 and compatible with nvm.
+
 Before you run it locally you need to install the dependencies, do so by running   
 `npm install`    
     
