@@ -1,6 +1,6 @@
 {
   "name": "scroll-rack",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Scroll rack is a tool for easy storage and access to your own collection of scripts.",
   "homepage": "https://www.github.com/shadovo/scroll-rack",
   "main": "src/main.js",
