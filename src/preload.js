@@ -1,7 +1,6 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
-const { app, clipboard, ipcRenderer } = require('electron');
-const path = require('path');
+const { clipboard, ipcRenderer } = require('electron');
 
 // HANDLE DATA
 function readConf() {
@@ -45,20 +44,21 @@ function createHamburgerIcon() {
     </svg>`;
 }
 
-function createScript(scriptConf) {
-  return `<div class="script__container" data-script="${scriptConf.script}" title="Copy script to clipboard">
+function createScript(groupId, scriptConf, scriptId) {
+  const preparedScript = encodeHTML(scriptConf.script).replace(/<br>/g, '<br>&nbsp;&nbsp;');
+  return `<div class="script__container" data-group-id="${groupId}" data-script-id="${scriptId}" title="Copy script to clipboard">
     <h3>${scriptConf.title}</h3>
-    <p class="script__description">${scriptConf.description.replace(/`(.*)`/g, '<span class="code">$1</span>')}</p>
-    <p class="script"><span class="code">${scriptConf.script.replace(/ \\/g, ' \\<br>&nbsp;&nbsp;')}</span></p>
+    <p class="script__description">${encodeHTML(scriptConf.description).replace(/`(.*)`/g, '<span class="code">$1</span>')}</p>
+    <p class="script"><span class="code">${preparedScript}</span></p>
   </div>`;
 }
 
-function createGroup(groupConf) {
+function createGroup(groupConf, groupId) {
   return `
     <div class="group">
-      <h2 class="group__title group--closed" title="Click to reveal scripts">${groupConf.groupTitle} <span class="right">${createHamburgerIcon()}</span></h2>
+      <h2 class="group__title group--closed" title="Click to reveal scripts">${encodeHTML(groupConf.groupTitle)} <span class="right">${createHamburgerIcon()}</span></h2>
       <div class="group__scripts">
-        ${groupConf.scripts.map(createScript).join('')}
+        ${groupConf.scripts.map(createScript.bind({}, groupId)).join('')}
       </div>
     </div>
   `;
@@ -68,11 +68,14 @@ function createGroup(groupConf) {
 
 function renderConfig(config) {
   document.getElementById('content').innerHTML = config.map(createGroup).join('');
+
   [...document.querySelectorAll('.script__container')].forEach(ele => {
     ele.addEventListener('click', () => {
-      clipboard.writeText(ele.dataset.script);
+      const script = config[ele.dataset.groupId].scripts[ele.dataset.scriptId].script;
+      clipboard.writeText(script);
     }, false)
   });
+
   [...document.querySelectorAll('.group__title')].forEach(ele => {
     ele.addEventListener('click', () => {
         ele.classList.toggle('group--closed');
@@ -88,6 +91,12 @@ function renderAddConfig() {
 }
 
 // UTILS
+function encodeHTML(str) {
+  const tempEle = document.createElement('div');
+  tempEle.innerText = str;
+  return tempEle.innerHTML;
+}
+
 function select(selector) {
   return document.querySelector(selector);
 }
